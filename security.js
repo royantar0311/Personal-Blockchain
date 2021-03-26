@@ -23,28 +23,37 @@ class CryptoSecurity{
         //         console.log(err);
         //     }
         // } )
+        const {publicKey, privateKey} = crypto.generateKeyPairSync('rsa', {
+                    modulusLength: 530,    // options
+                    publicExponent: 0x10101,
+                    publicKeyEncoding: {type: 'pkcs1',format: 'der'},
+                    privateKeyEncoding: {type: 'pkcs8',format: 'der', cipher: 'aes-192-cbc',passphrase: pass
+                    }
+              });
+              
+            
+        return {privateKey, publicKey};
 
-
-        crypto.generateKeyPair('rsa', {
-                modulusLength: 530,    // options
-                publicExponent: 0x10101,
-                publicKeyEncoding: {type: 'pkcs1',format: 'der'},
-                privateKeyEncoding: {type: 'pkcs8',format: 'der',cipher: 'aes-192-cbc',passphrase: pass
-                }
-          },    async (err, publicKey, privateKey) => { // Callback function
-                 if(!err)
-                 {
-                    // console.log("Private Key is: ", privateKey.toString('hex'));
-                    const privateJinish = await privateKey.toString('hex')
-                    return privateJinish
-                }
-                 else
-                 {
-                   // Prints error
-                   console.log("Errr is: ", err);
-                 }
+        // crypto.generateKeyPair('rsa', {
+        //         modulusLength: 530,    // options
+        //         publicExponent: 0x10101,
+        //         publicKeyEncoding: {type: 'pkcs1',format: 'der'},
+        //         privateKeyEncoding: {type: 'pkcs8',format: 'der',cipher: 'aes-192-cbc',passphrase: pass
+        //         }
+        //   },    async (err, publicKey, privateKey) => { // Callback function
+        //          if(!err)
+        //          {
+        //             console.log("Private Key is: ", privateKey.toString('hex'));
+        //             const privateJinish = await privateKey.toString('hex')
+        //             return privateJinish;
+        //         }
+        //          else
+        //          {
+        //            // Prints error
+        //            console.log("Errr is: ", err);
+        //          }
                    
-            })
+        //     })
     }
 
 

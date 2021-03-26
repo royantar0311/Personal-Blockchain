@@ -9,9 +9,12 @@ const {Account} = require("./account")
 function signUp(username,password)
 {
     let cryptoSecurity = new CryptoSecurity()
-    let key = cryptoSecurity.getKey("yooo")
+    const {privateKey, publicKey} = cryptoSecurity.getKey("yoooi")
+    const ret = cryptoSecurity.symmetricEncrypt(privateKey, "hello");
     
-    console.log(key)
+    console.log(ret);
+    const dec = cryptoSecurity.symmetricDecrypt(ret, "hello");
+    console.log(dec == privateKey);
     // let encrypedPrivateKey = cryptoSecurity.symmetricEncrypt(key.privateKey,password) 
     
 }
